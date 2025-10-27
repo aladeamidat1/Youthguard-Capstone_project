@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'core',
     'rest_framework',
     'djoser',
+    'earn',
+    'jobs',
+    'courses',
 
 ]
 
