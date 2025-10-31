@@ -15,7 +15,7 @@ class MicroTask(models.Model):
     task_type = models.CharField(max_length=50, blank=True)
     reward = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
     is_active = models.BooleanField(default=True)
-    created_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
         return self.title
@@ -27,7 +27,7 @@ class TaskSubmission(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='task_submissions')
     submission = models.TextField(blank=True)  # or FileField if file uploads
     status = models.CharField(max_length=20, choices=[('pending','Pending'),('approved','Approved'),('rejected','Rejected')], default='pending')
-    submitted_at = models.DateTimeField()
+    submitted_at = models.DateTimeField(auto_now_add=True, null=True)
 
 
 class Wallet(models.Model):

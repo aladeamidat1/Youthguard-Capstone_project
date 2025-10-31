@@ -2,8 +2,8 @@ from django.urls import path
 from .views import (
     list_tasks, create_task, get_task, update_task, delete_task,
     submit_task, review_submission,
-    get_wallet, deposit_to_wallet,
-    list_transactions
+    get_wallet, deposit_to_wallet, withdraw_from_wallet,
+    list_transactions, my_submissions
 )
 
 urlpatterns = [
@@ -25,9 +25,12 @@ urlpatterns = [
     
     # Wallet endpoints
     path('wallet/', get_wallet, name='get-wallet'),
-
     path('wallet/deposit/', deposit_to_wallet, name='deposit-to-wallet'),
+    path('wallet/withdraw/', withdraw_from_wallet, name='withdraw-from-wallet'),
     
     # Transaction endpoints
     path('transactions/', list_transactions, name='list-transactions'),
+    
+    # Submission endpoints
+    path('submissions/', my_submissions, name='my-submissions'),
 ]

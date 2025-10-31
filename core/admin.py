@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 #from django.contrib.auth.models import User
 
-from core.models import User, Company
+from core.models import User, Company, UserProfile
 
 
 # Register your models here.
@@ -16,14 +16,18 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (
             None,
-
             {
                 'classes': ('wide',),
                 "fields": ('email', 'first_name', 'last_name', 'password1', 'password2','phone')
-
             }
         )
     )
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'location', 'experience_level', 'created_at')
+    list_filter = ('experience_level', 'created_at')
+    search_fields = ('user__username', 'user__email', 'location')
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
